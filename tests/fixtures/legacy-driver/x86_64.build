@@ -1,0 +1,9 @@
+# Hand-written sample buildfile
+[virtual=x86_64,multiboot] .bootstrap = {
+    startup-x86 -D8250
+    PATH=/proc/boot procnto-smp-instr -n -mr -U
+}
+[+script] .script = {
+    uart_intr &
+}
+libmq.so

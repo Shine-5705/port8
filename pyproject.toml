@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "port8"
+version = "0.1.0"
+description = "Find what breaks when you move QNX SDP 7.1 code to QNX SDP 8.0. Every rule cites the QNX 8.0 migration guide."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+authors = [{ name = "Shine Gupta" }]
+
+[project.scripts]
+port8 = "port8.cli:main"
+
+[tool.setuptools]
+packages = ["port8"]

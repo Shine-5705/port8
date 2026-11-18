@@ -1,0 +1,14 @@
+name: port8 QNX 8.0 migration check
+description: Scan a repo for QNX SDP 7.1 -> 8.0 breakages and upload SARIF to GitHub code scanning.
+inputs:
+  path: { description: Path to scan, default: "." }
+  fail-on: { description: "error | warning | never", default: "error" }
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        pip install --quiet "${{ github.action_path }}"
+        port8 "${{ inputs.path }}" --format sarif --fail-on never > port8.sarif
+        port8 "${{ inputs.path }}" --format md --fail-on never >> "$GITHUB_STEP_SUMMARY"
+        port8 "${{ inputs.path }}" --fail-on "${{ inputs.fail-on }}"
